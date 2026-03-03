@@ -8,7 +8,7 @@ Route::get('/', function () {
     $images = DB::table('images')
     ->select('*')
     ->get();
-    $myImages = $images->pluck('image')->all();
+    $myImages = $images->all();
 
     return view('welcome', ['imagesInView' => $myImages]);
 });
@@ -32,8 +32,14 @@ Route::post('/store', function (Request $request) {
     return redirect('/');
 });
 
-Route::get('/show', function () {
-    return view('show');
+Route::get('/show/{id}', function ($id) {
+    $myImage = DB::table('images')
+    ->select('*')
+    ->where('id', $id)
+    ->first()
+    ->image;
+    
+    return view('show', ['imageInView'=> $myImage]);
 });
 
 Route::get('/edit', function () {
