@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImagesController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', [ImagesController::class, 'index']);
 
-Route::get('/about', [ImagesController::class, 'about']);
+Route::get('/about', [HomeController::class, 'about']);
 
 Route::get('/create', [ImagesController::class, 'create']);
 
